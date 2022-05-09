@@ -1,2 +1,2 @@
-# GetAttendanceReports
-Programatically get attendance reports via MS Graph
+# Get Microsoft Teams Attendance Reports
+Are you looking for a way to have attendance reports automatically downloaded for a particular user? That functionality is currently available in the [Microsoft Graph API](https://docs.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0&tabs=http)! Follow the instructions in this [wiki](https://github.com/Spence10873/GetAttendanceReports/wiki) to deploy an automated Azure Function that will download attendance reports and upload them to a SharePoint site on a regular basis without any intervention from you or your users!
