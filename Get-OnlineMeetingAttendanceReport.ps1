@@ -12,7 +12,7 @@ Import-Module PnP.PowerShell -SkipEditionCheck
 $TenantId = $ENV:TenantId #Ex: dfeeef05-adf7-4200-adf4-0034f2aaadd1
 $AppId = $ENV:AppId #Ex: dfeeef05-adf7-4200-adf4-0034f2aaadd1
 $ReportInDays = $ENV:ReportInDays #Ex: 7
-$OrganizerUPN = $ENV:OrganizerUPN #Ex: MeganB@contoso.com,AdeleV@contoso.com
+$UPNs = $ENV:OrganizerUPN #Ex: MeganB@contoso.com,AdeleV@contoso.com
 $SPOFolder = $ENV:SPOFolder #Ex: Shared Documents/Training/Attendance Reports
 $SPOSiteURL = $ENV:SPOSiteURL #Ex: https://contoso.sharepoint.com/sites/Training
 $CertificateThumbprint = $ENV:CertificateThumbprint #Ex: 8cc5edbc1cd9f61120fc6fdbefe1d8cd8f2759d5
@@ -27,6 +27,10 @@ If (!(Get-MgContext)) {
 
 #Connect to PnP, in order to move file to a SharePoint site
 Connect-PnPOnline $SPOSiteURL -ClientId $AppId -Tenant $TenantId -Thumbprint $CertificateThumbprint
+
+#Split UPNs into an array
+$OrganizerUPN = @()
+$OrganizerUPN += ($UPNs.Replace(" ","")).Split(",")
 
 #Get matching events
 [System.DateTime]$EventStartDate = (Get-Date).AddDays(-$ReportInDays)
